@@ -6,4 +6,7 @@ module.exports = {
             '@': path.resolve('resources/js'),
         },
     },
+    devServer: {
+        port: 9000
+    }
 };
