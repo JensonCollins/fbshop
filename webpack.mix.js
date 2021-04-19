@@ -1,4 +1,4 @@
-const mix = require('laravel-mix');
+const mix = require('laravel-mix')
 
 /*
  |--------------------------------------------------------------------------
@@ -12,12 +12,20 @@ const mix = require('laravel-mix');
  */
 
 mix.js('resources/js/app.js', 'public/js').vue()
-    .postCss('resources/css/app.css', 'public/css', [
-        require('postcss-import'),
-        require('tailwindcss'),
-    ])
-    .webpackConfig(require('./webpack.config'));
+  .postCss('resources/css/app.css', 'public/css', [
+    require('postcss-import'),
+    require('tailwindcss')
+  ])
+  .sass('resources/scss/app.scss', 'public/css')
+  .webpackConfig(require('./webpack.config'))
+
+mix.options({
+  hmrOptions: {
+    host: 'localhost',
+    port: 9000
+  }
+})
 
 if (mix.inProduction()) {
-    mix.version();
+  mix.version()
 }

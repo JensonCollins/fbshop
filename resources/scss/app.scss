@@ -1,0 +1,14 @@
+@import "variables";
+@import "common";
+@import "pages";
+@import "components";
+
+.page_wrapper {
+  min-height: calc(100vh - #{$navbar-size});
+  min-height: calc(var(--vh, 1vh) * 100 - #{$navbar-size});
+}
+button {
+  &:focus {
+    outline: none !important;
+  }
+}

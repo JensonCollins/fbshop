@@ -5,8 +5,5 @@ module.exports = {
         alias: {
             '@': path.resolve('resources/js'),
         },
-    },
-    devServer: {
-        port: 9000
     }
 };

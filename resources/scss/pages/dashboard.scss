@@ -1,0 +1,6 @@
+.dashboard-page {
+  .welcome {
+    min-height: calc(100vh - #{$navbar-size});
+    min-height: calc(var(--vh, 1vh) * 100 - #{$navbar-size});
+  }
+}

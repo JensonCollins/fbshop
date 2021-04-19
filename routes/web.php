@@ -4,6 +4,8 @@ use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 use App\Http\Controllers\SocialController;
+use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\ProductController;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,19 +18,13 @@ use App\Http\Controllers\SocialController;
 |
 */
 
-Route::get('/', function () {
-    return Inertia::render('Welcome', [
-        'canLogin' => Route::has('login'),
-        'canRegister' => Route::has('register'),
-        'laravelVersion' => Application::VERSION,
-        'phpVersion' => PHP_VERSION,
-    ]);
-});
-
 Route::get('/auth/facebook', [SocialController::class, 'facebookRedirect'])->name('auth.facebook');
 
 Route::get('/auth/facebook/callback', [SocialController::class, 'loginWithFacebook'])->name('auth.facebook.callback');
 
-Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
-    return Inertia::render('Dashboard');
-})->name('dashboard');
+Route::middleware(['auth:sanctum', 'verified'])->group(function() {
+    Route::get('/', DashboardController::class)->name('dashboard');
+    Route::redirect('/dashboard', '/', 301);
+
+    Route::get('/products', [ProductController::class, 'list'])->name('product.list');
+});
