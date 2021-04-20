@@ -20,9 +20,9 @@
               </inertia-link>
             </div>
 
-<!--            <div class="hidden sm:flex sm:items-center sm:ml-6">
-              &lt;!&ndash; Settings Dropdown &ndash;&gt;
-              <div v-if="$page.props.user" class="ml-3 relative">
+            <div class="hidden sm:flex sm:items-center sm:ml-6">
+              <!-- Settings Dropdown -->
+              <div class="ml-3 relative">
                 <jet-dropdown align="right" width="48">
                   <template #trigger>
                     <span class="inline-flex rounded-md">
@@ -41,7 +41,7 @@
                   </template>
 
                   <template #content>
-                    &lt;!&ndash; Account Management &ndash;&gt;
+                    <!-- Account Management -->
                     <div class="block px-4 py-2 text-xs text-gray-400">
                       Manage Account
                     </div>
@@ -52,7 +52,7 @@
 
                     <div class="border-t border-gray-100"></div>
 
-                    &lt;!&ndash; Authentication &ndash;&gt;
+                    <!-- Authentication -->
                     <form @submit.prevent="logout">
                       <jet-dropdown-link as="button">
                         Log Out
@@ -61,24 +61,20 @@
                   </template>
                 </jet-dropdown>
               </div>
-            </div>-->
+            </div>
 
             <!-- Hamburger -->
-            <div class="-mr-2 flex items-center text-white">
-              <inertia-link :href="route('products.list')">
-                <font-awesome-icon class="text-white" icon="bars" size="lg" />
-              </inertia-link>
-<!--            <div class="-mr-2 flex items-center sm:hidden text-white">-->
-<!--              <button @click="showingNavigationDropdown = ! showingNavigationDropdown"-->
-<!--                      class="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 focus:text-gray-500 transition"-->
-<!--                      :class="{'hidden': showLinks}">-->
-<!--                <svg class="h-6 w-6" stroke="currentColor" fill="none" viewBox="0 0 24 24">-->
-<!--                  <path :class="{'hidden': showingNavigationDropdown, 'inline-flex': ! showingNavigationDropdown }"-->
-<!--                        stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>-->
-<!--                  <path :class="{'hidden': ! showingNavigationDropdown, 'inline-flex': showingNavigationDropdown }"-->
-<!--                        stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>-->
-<!--                </svg>-->
-<!--              </button>-->
+            <div class="-mr-2 flex items-center sm:hidden text-white">
+              <button @click="showingNavigationDropdown = ! showingNavigationDropdown"
+                      class="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 focus:text-gray-500 transition"
+                      :class="{'hidden': showLinks}">
+                <svg class="h-6 w-6" stroke="currentColor" fill="none" viewBox="0 0 24 24">
+                  <path :class="{'hidden': showingNavigationDropdown, 'inline-flex': ! showingNavigationDropdown }"
+                        stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+                  <path :class="{'hidden': ! showingNavigationDropdown, 'inline-flex': showingNavigationDropdown }"
+                        stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+                </svg>
+              </button>
             </div>
           </div>
         </div>

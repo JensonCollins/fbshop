@@ -22,11 +22,17 @@ Route::get('/auth/facebook', [SocialController::class, 'facebookRedirect'])->nam
 
 Route::get('/auth/facebook/callback', [SocialController::class, 'loginWithFacebook'])->name('auth.facebook.callback');
 
-Route::middleware(['auth:sanctum', 'verified'])->group(function() {
-    Route::get('/', DashboardController::class)->name('seller.dashboard');
-    Route::redirect('/dashboard', '/', 301);
+Route::get('/products', [ProductController::class, 'products_list'])->name('products.list');
+Route::get('/product/detail/{id}', [ProductController::class, 'product_detail'])->name('product.detail');
 
-    Route::get('/seller/products/{date?}', [ProductController::class, 'list'])->name('seller.products.list');
-    Route::get('/seller/product/detail/{id}/{date?}', [ProductController::class, 'detail'])->name('seller.product.detail');
-    Route::get('/seller/product/add', [ProductController::class, 'add'])->name('seller.product.add');
+Route::middleware(['auth:sanctum', 'verified'])->group(function() {
+    Route::redirect('/dashboard', '/', 301);
+    Route::middleware(['isseller'])->group(function () {
+        Route::get('/', DashboardController::class)->name('seller.dashboard');
+
+        Route::get('/seller/products/{date?}', [ProductController::class, 'list'])->name('seller.products.list');
+        Route::get('/seller/product/detail/{id}/{date?}', [ProductController::class, 'detail'])->name('seller.product.detail');
+        Route::get('/seller/product/add', [ProductController::class, 'add'])->name('seller.product.add');
+    });
+    Route::post('/product/buy', [ProductController::class, 'product_buy'])->name('product.buy');
 });

@@ -7,7 +7,7 @@
       <font-awesome-icon icon="bars" size="5x" />
     </inertia-link>
 
-    <inertia-link :href="route('seller.products.list')" class="h-1/2 flex-auto flex flex-col items-center justify-center text-primary">
+    <inertia-link :href="route('seller.product.add')" class="h-1/2 flex-auto flex flex-col items-center justify-center text-primary">
       <span class="text-4xl font-bold">
         Put
       </span>
