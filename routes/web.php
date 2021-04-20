@@ -23,8 +23,10 @@ Route::get('/auth/facebook', [SocialController::class, 'facebookRedirect'])->nam
 Route::get('/auth/facebook/callback', [SocialController::class, 'loginWithFacebook'])->name('auth.facebook.callback');
 
 Route::middleware(['auth:sanctum', 'verified'])->group(function() {
-    Route::get('/', DashboardController::class)->name('dashboard');
+    Route::get('/', DashboardController::class)->name('seller.dashboard');
     Route::redirect('/dashboard', '/', 301);
 
-    Route::get('/products', [ProductController::class, 'list'])->name('product.list');
+    Route::get('/seller/products/{date?}', [ProductController::class, 'list'])->name('seller.products.list');
+    Route::get('/seller/product/detail/{id}/{date?}', [ProductController::class, 'detail'])->name('seller.product.detail');
+    Route::get('/seller/product/add', [ProductController::class, 'add'])->name('seller.product.add');
 });

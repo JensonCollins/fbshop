@@ -8,14 +8,14 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div class="flex justify-between h-16">
             <div class="flex items-center">
-              <inertia-link :href="route('dashboard')" :class="{'hidden': showLinks}">
+              <inertia-link :href="route('seller.dashboard')" :class="{'hidden': showLinks}">
                 <font-awesome-icon class="text-white" icon="plus-circle" size="lg" />
               </inertia-link>
             </div>
 
             <!-- Logo -->
             <div class="flex items-center">
-              <inertia-link :href="route('dashboard')">
+              <inertia-link :href="route('seller.dashboard')">
                 <h1 class="text-5xl text-white">{{ $page.props.app_name }}</h1>
               </inertia-link>
             </div>
@@ -135,7 +135,7 @@ export default {
 
   computed: {
     showLinks () {
-      return route().current() === 'dashboard'
+      return route().current() === 'seller.dashboard'
     }
   },
 
