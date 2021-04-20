@@ -6,6 +6,7 @@ use Inertia\Inertia;
 use App\Http\Controllers\SocialController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\FileController;
 
 /*
 |--------------------------------------------------------------------------
@@ -27,12 +28,17 @@ Route::get('/product/detail/{id}', [ProductController::class, 'product_detail'])
 
 Route::middleware(['auth:sanctum', 'verified'])->group(function() {
     Route::redirect('/dashboard', '/', 301);
+    Route::post('/file_upload', [FileController::class, 'upload'])->name('file_upload');
+    Route::get('/storage/images/{file}', [FileController::class, 'return_file'])->name('file_serve');
+
     Route::middleware(['isseller'])->group(function () {
         Route::get('/', DashboardController::class)->name('seller.dashboard');
 
         Route::get('/seller/products/{date?}', [ProductController::class, 'list'])->name('seller.products.list');
         Route::get('/seller/product/detail/{id}/{date?}', [ProductController::class, 'detail'])->name('seller.product.detail');
         Route::get('/seller/product/add', [ProductController::class, 'add'])->name('seller.product.add');
+        Route::post('/seller/product/save', [ProductController::class, 'save'])->name('seller.product.save');
+        Route::post('/seller/product/delete', [ProductController::class, 'delete'])->name('seller.product.delete');
     });
     Route::post('/product/buy', [ProductController::class, 'product_buy'])->name('product.buy');
 });

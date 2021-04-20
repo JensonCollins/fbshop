@@ -36,7 +36,7 @@
           <button class="rounded-full bg-primary px-4 py-1 text-white text-sm">
             View on Facebook
           </button>
-          <button class="rounded-full bg-gray px-4 py-1 text-white text-sm">
+          <button class="rounded-full bg-gray-500 px-4 py-1 text-white text-sm" @click="deleteItem">
             <font-awesome-icon icon="trash-alt" class="mr-3" />
             Delete
           </button>
@@ -57,14 +57,24 @@ export default {
     AppLayout
   },
 
-  data: () => ({
-    ImagePlaceholder: 'https://via.placeholder.com/100'
-  }),
+  data () {
+    return {
+      ImagePlaceholder: 'https://via.placeholder.com/100',
+      form: this.$inertia.form({
+        id: null
+      })
+    }
+  },
 
   methods: {
     currency (value) {
       if (!value || parseInt(value) === 0) return '-'
       return numeral(value).format('0,0') + 'P'
+    },
+
+    deleteItem () {
+      this.form.id = this.item.id
+      this.form.post(this.route('seller.product.delete'))
     }
   }
 }

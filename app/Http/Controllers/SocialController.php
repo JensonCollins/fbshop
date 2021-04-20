@@ -18,6 +18,8 @@ class SocialController extends Controller
             $user = Socialite::driver('facebook')->user();
             $isUser = User::where('fb_id', $user->id)->first();
 
+            error_log(json_encode($user));
+
             if ($isUser) {
                 Auth::login($isUser);
                 return redirect('/dashboard');

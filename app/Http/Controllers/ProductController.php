@@ -33,6 +33,27 @@ class ProductController extends Controller
         return Inertia::render('Product/Add', []);
     }
 
+    public function save(Request $request) {
+        $input = $request->all();
+
+        $product = new Product();
+        $product->image = $input['image'];
+        $product->name = $input['name'];
+        $product->memo = $input['memo'];
+        $product->price = $input['price'];
+
+        $product->save();
+
+        return redirect(route('seller.product.detail', ['id' => $product->id]))->banner('The product was saved');
+    }
+
+    public function delete(Request $request) {
+        $product = Product::findOrFail($request->id);
+        $product->is_deleted = 1;
+        $product->save();
+        return redirect(route('seller.products.list'))->banner('The product has been deleted');
+    }
+
     public function products_list(Request $request) {
         $products = Product
             ::where('is_deleted', 0)
