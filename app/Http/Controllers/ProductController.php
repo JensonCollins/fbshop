@@ -3,11 +3,24 @@
 namespace App\Http\Controllers;
 
 use App\Models\Product;
+use Facebook\Exceptions\FacebookSDKException;
+use Facebook\Facebook;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Inertia\Inertia;
 
 class ProductController extends Controller
 {
+    private $api;
+
+    public function __construct(Facebook $fb) {
+        $this->middleware(function ($request, $next) use ($fb) {
+            $fb->setDefaultAccessToken("EAAoC7KoFKm0BAMyqko3r12kZBtIvVfr7RXhrLG4300qyoOrnrEZAFGgeq6fBuSp3XJhQjRkVnKNVxSnkUC2NjBpYlAO6YtRHT0wOh3W2qluaVc75vHvoRpGZAWUje7fk1brcb9EY28OvOnJVy7jBKjo4WKlLBQsGITIthlFtVUIB605mN0pAWgYGAPb347enEt8O2QE60Qn93LkVMQbtXfIZB9JBLPvuVO9lnSOwgQJH2IUoBGlY5IQIAWgeZBS0ZD");
+            $this->api = $fb;
+            return $next($request);
+        });
+    }
+
     public function list(Request $request, $date = null) {
         $products = Product::where('is_deleted', 0)->orderByDesc('created_at');
         if ($date) {
@@ -44,7 +57,32 @@ class ProductController extends Controller
 
         $product->save();
 
+        try {
+            $response = $this->api->post('/me/feed', [
+                'message' => $input['name']
+            ])->getGraphNode()->asArray();
+            if($response['id']){
+                // post created
+                error_log(json_encode($response));
+            }
+        } catch (FacebookSDKException $e) {
+            dd($e); // handle exception
+        }
+
         return redirect(route('seller.product.detail', ['id' => $product->id]))->banner('The product was saved');
+    }
+
+    public function publishToProfile(Request $request){
+        try {
+            $response = $this->api->post('/me/feed', [
+                'message' => $request->message
+            ])->getGraphNode()->asArray();
+            if($response['id']){
+                // post created
+            }
+        } catch (FacebookSDKException $e) {
+            dd($e); // handle exception
+        }
     }
 
     public function delete(Request $request) {
