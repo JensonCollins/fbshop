@@ -19,6 +19,10 @@ use App\Http\Controllers\FileController;
 |
 */
 
+if (env('APP_ENV') == 'production') {
+    \Illuminate\Support\Facades\URL::forceScheme('https');
+}
+
 Route::get('/auth/facebook', [SocialController::class, 'facebookRedirect'])->name('auth.facebook');
 
 Route::get('/auth/facebook/callback', [SocialController::class, 'loginWithFacebook'])->name('auth.facebook.callback');

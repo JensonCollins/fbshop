@@ -64,7 +64,7 @@
             </div>-->
 
             <!-- Hamburger -->
-            <div class="-mr-2 flex items-center text-white">
+            <div class="flex items-center text-white">
               <inertia-link :href="route('products.list')" :class="{'hidden': showLinks}">
                 <font-awesome-icon class="text-white" icon="bars" size="lg" />
               </inertia-link>

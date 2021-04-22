@@ -85,7 +85,7 @@ export default {
   .product-image {
     img {
       width: 300px;
-      height: 300px;
+      height: auto;
     }
     &.sold {
       position: relative;

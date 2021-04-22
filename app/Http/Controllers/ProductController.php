@@ -15,7 +15,8 @@ class ProductController extends Controller
 
     public function __construct(Facebook $fb) {
         $this->middleware(function ($request, $next) use ($fb) {
-            $fb->setDefaultAccessToken("EAAoC7KoFKm0BAMyqko3r12kZBtIvVfr7RXhrLG4300qyoOrnrEZAFGgeq6fBuSp3XJhQjRkVnKNVxSnkUC2NjBpYlAO6YtRHT0wOh3W2qluaVc75vHvoRpGZAWUje7fk1brcb9EY28OvOnJVy7jBKjo4WKlLBQsGITIthlFtVUIB605mN0pAWgYGAPb347enEt8O2QE60Qn93LkVMQbtXfIZB9JBLPvuVO9lnSOwgQJH2IUoBGlY5IQIAWgeZBS0ZD");
+//            $fb->setDefaultAccessToken("EAAoC7KoFKm0BAMyqko3r12kZBtIvVfr7RXhrLG4300qyoOrnrEZAFGgeq6fBuSp3XJhQjRkVnKNVxSnkUC2NjBpYlAO6YtRHT0wOh3W2qluaVc75vHvoRpGZAWUje7fk1brcb9EY28OvOnJVy7jBKjo4WKlLBQsGITIthlFtVUIB605mN0pAWgYGAPb347enEt8O2QE60Qn93LkVMQbtXfIZB9JBLPvuVO9lnSOwgQJH2IUoBGlY5IQIAWgeZBS0ZD");
+            $fb->setDefaultAccessToken("2817965255109229|6142c66509589e3bcb92812de9401188");
             $this->api = $fb;
             return $next($request);
         });
@@ -57,7 +58,7 @@ class ProductController extends Controller
 
         $product->save();
 
-        try {
+       /* try {
             $response = $this->api->post('/me/feed', [
                 'message' => $input['name']
             ])->getGraphNode()->asArray();
@@ -67,7 +68,7 @@ class ProductController extends Controller
             }
         } catch (FacebookSDKException $e) {
             dd($e); // handle exception
-        }
+        }*/
 
         return redirect(route('seller.product.detail', ['id' => $product->id]))->banner('The product was saved');
     }
