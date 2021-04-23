@@ -34,7 +34,7 @@
         </div>
 
         <div v-if="item.is_sold === 0" class="flex justify-center mt-3 px-6">
-          <button class="w-full rounded-full bg-primary px-4 py-2 text-white text-sm" @click="buyItem = item">
+          <button class="w-full rounded-full bg-primary px-4 py-2 text-white text-lg font-semibold" @click="buyItem = item">
             Buy It!
           </button>
         </div>

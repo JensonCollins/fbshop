@@ -33,10 +33,10 @@
         </div>
 
         <div class="flex justify-around mt-3">
-          <button class="rounded-full bg-primary px-4 py-1 text-white text-sm">
+          <button class="rounded-full bg-primary px-4 py-2 text-white text-lg">
             View on Facebook
           </button>
-          <button class="rounded-full bg-gray-500 px-4 py-1 text-white text-sm" @click="deleteItem">
+          <button class="rounded-full bg-gray-500 px-6 py-2 text-white text-lg" @click="deleteItem">
             <font-awesome-icon icon="trash-alt" class="mr-3" />
             Delete
           </button>
