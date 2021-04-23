@@ -91,8 +91,10 @@ export default {
 .product-detail-page {
   .product-image {
     img {
-      width: 300px;
-      height: auto;
+      max-width: 300px;
+      max-height: 300px;
+      height: 300px;
+      width: auto;
     }
     &.sold {
       position: relative;

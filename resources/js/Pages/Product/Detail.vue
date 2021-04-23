@@ -9,7 +9,7 @@
           <font-awesome-icon icon="chevron-left" class="mr-2" />
           <span class="font-semibold">Back</span>
         </div>
-        <div class="product-image flex justify-center mt-3" :class="{'sold': item.is_sold === 1}">
+        <div class="product-image flex justify-center items-center mt-3" :class="{'sold': item.is_sold === 1}">
           <img :src="item.image || ImagePlaceholder" alt="Image" />
         </div>
         <div class="flex flex-col px-6 mt-3">
@@ -84,8 +84,10 @@ export default {
 .product-detail-page {
   .product-image {
     img {
-      width: 300px;
-      height: auto;
+      max-width: 300px;
+      max-height: 300px;
+      height: 300px;
+      width: auto;
     }
     &.sold {
       position: relative;

@@ -1,6 +1,6 @@
 <template>
   <div class="product-item flex py-2">
-    <div class="item-image" :class="{ 'sold': item.is_sold === 1 }">
+    <div class="item-image flex items-center justify-center" :class="{ 'sold': item.is_sold === 1 }">
       <img :src="item.image || ImagePlaceholder" alt="Image" />
     </div>
     <div class="pl-4 flex flex-col">
@@ -54,6 +54,11 @@ export default {
   .item-image {
     min-width: 100px;
     width: 100px;
+
+    img {
+      max-width: 100px;
+      max-height: 100px;
+    }
   }
 }
 </style>
