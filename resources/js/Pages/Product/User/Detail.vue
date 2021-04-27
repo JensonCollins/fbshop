@@ -83,6 +83,34 @@ export default {
       if (!value || parseInt(value) === 0) return '-'
       return numeral(value).format('0,0') + 'P'
     }
+  },
+
+  head () {
+    return {
+      title: 'LodyShopping',
+      meta: [
+        {
+          hid: 'description',
+          name: 'description',
+          content: this.item.memo
+        },
+        {
+          hid: 'og-title',
+          property: 'og:title',
+          content: this.item.name
+        },
+        {
+          hid: 'og-description',
+          property: 'og:description',
+          content: this.item.memo
+        },
+        {
+          hid: 'og-image',
+          property: 'og:image',
+          content: this.item.image
+        }
+      ]
+    }
   }
 }
 </script>
